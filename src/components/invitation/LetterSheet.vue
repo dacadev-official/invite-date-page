@@ -126,4 +126,33 @@ defineProps<{
   letter-spacing: var(--ls-utility);
   color: color-mix(in srgb, var(--color-text-on-light) 70%, transparent);
 }
+
+@media (max-width: 32rem) {
+  .letter {
+    padding-top: var(--space-4);
+  }
+
+  .letter__photos-left {
+    position: static;
+    transform: none;
+    margin: 0 auto var(--space-5);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .letter__photo--two {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .letter__photo--three {
+    position: static;
+    align-self: center;
+    top: auto;
+    right: auto;
+    order: 1;
+    margin: var(--space-3) 0 0;
+    transform: rotate(7deg);
+  }
+}
 </style>
