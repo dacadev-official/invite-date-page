@@ -1,5 +1,14 @@
 import { computed, nextTick, onMounted, onUnmounted, ref, watch, type CSSProperties, type Ref } from 'vue'
-import { decayStyle, pickEscapePosition, shouldFlee, type Point } from '@/utils/escape'
+import { decayStyle, pickEscapePosition, shouldFlee, type DecayRates, type Point } from '@/utils/escape'
+import { useIsMobileDevice } from '@/composables/useIsMobileDevice'
+
+/**
+ * Tasas móviles: la broma en pantallas táctiles debe resolverse rápido — a
+ * lo sumo 5 toques hasta que `scale` cruce el umbral de rendición (0.3),
+ * frente a los ~80 intentos de desktop. `useIsMobileDevice` decide una sola
+ * vez, al cargar la página, cuál de las dos tasas aplica.
+ */
+const MOBILE_DECAY_RATES: DecayRates = { scale: 0.75, opacity: 0.85 }
 
 export interface UseEvasiveTargetOptions {
   /**
@@ -43,6 +52,7 @@ export function useEvasiveTarget(
 ) {
   const vanishThreshold = options.vanishThreshold ?? 0.3
   const fleeRadius = options.fleeRadius ?? 56
+  const decayRates = useIsMobileDevice() ? MOBILE_DECAY_RATES : undefined
 
   const attempts = ref(0)
   const position = ref<Point>({ x: 12, y: 12 })
@@ -153,7 +163,7 @@ export function useEvasiveTarget(
     buttonRef.value?.removeEventListener('focus', handleFocus)
   })
 
-  const decay = computed(() => decayStyle(attempts.value))
+  const decay = computed(() => decayStyle(attempts.value, decayRates))
 
   // "Desaparecido" = scale u opacity por debajo del umbral: el cambio de
   // texto (label del botón, nota de rendición) espera a que el botón ya no

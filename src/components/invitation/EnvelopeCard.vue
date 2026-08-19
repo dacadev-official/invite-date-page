@@ -6,7 +6,7 @@ import type { LetterContent, PhotoRef } from '@/types/invitation'
 const props = defineProps<{
   state: 'sealed' | 'opening' | 'open'
   letter: LetterContent
-  photos: [PhotoRef, PhotoRef]
+  photos: [PhotoRef, PhotoRef, PhotoRef]
   dateDay: string
   openLabel: string
   openedLabel: string

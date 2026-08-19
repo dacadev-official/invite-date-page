@@ -1,4 +1,7 @@
 import type { InvitationContent } from '@/types/invitation'
+import capriPhoto from '@/assets/images/capri.jpg'
+import cairoPhoto from '@/assets/images/cairo.jpg'
+import amorPhoto from '@/assets/images/amor.jpg'
 
 /**
  * Única fuente de copy y datos de la invitación. Edita este archivo para
@@ -24,12 +27,16 @@ export const invitation: InvitationContent = {
 
   photos: [
     {
-      src: 'https://placehold.co/600x760/EFE9DC/4B0E14?text=Nosotros+1',
+      src: capriPhoto,
       alt: 'Foto de nosotros dos, número uno',
     },
     {
-      src: 'https://placehold.co/600x760/EFE9DC/4B0E14?text=Nosotros+2',
+      src: cairoPhoto,
       alt: 'Foto de nosotros dos, número dos',
+    },
+    {
+      src: amorPhoto,
+      alt: 'Foto de nosotros dos, número tres',
     },
   ],
 

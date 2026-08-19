@@ -43,7 +43,7 @@ export interface InvitationContent {
   envelopeOpenLabel: string
   envelopeOpenedLabel: string
   letter: LetterContent
-  photos: [PhotoRef, PhotoRef]
+  photos: [PhotoRef, PhotoRef, PhotoRef]
   date: DateDetails
   actions: RsvpActionsContent
   declineModal: DeclineModalContent

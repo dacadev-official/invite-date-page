@@ -3,14 +3,14 @@ import type { LetterContent, PhotoRef } from '@/types/invitation'
 
 defineProps<{
   letter: LetterContent
-  photos: [PhotoRef, PhotoRef]
+  photos: [PhotoRef, PhotoRef, PhotoRef]
   dateDay: string
 }>()
 </script>
 
 <template>
   <article class="letter">
-    <div class="letter__photos">
+    <div class="letter__photos-left">
       <figure class="letter__photo letter__photo--one">
         <img :src="photos[0].src" :alt="photos[0].alt" loading="lazy" />
       </figure>
@@ -18,6 +18,10 @@ defineProps<{
         <img :src="photos[1].src" :alt="photos[1].alt" loading="lazy" />
       </figure>
     </div>
+
+    <figure class="letter__photo letter__photo--three">
+      <img :src="photos[2].src" :alt="photos[2].alt" loading="lazy" />
+    </figure>
 
     <div class="letter__text">
       <p class="letter__greeting">{{ letter.greeting }}</p>
@@ -32,6 +36,7 @@ defineProps<{
 
 <style scoped>
 .letter {
+  position: relative;
   background: var(--color-surface);
   color: var(--color-text-on-light);
   border-radius: var(--radius-sm);
@@ -42,11 +47,17 @@ defineProps<{
   gap: var(--space-3);
 }
 
-.letter__photos {
+.letter__photos-left {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--space-2);
+  margin-top: calc(-1 * var(--space-5));
+  margin-left: calc(-1 * var(--space-4));
+  margin-bottom: calc(-1 * var(--space-2));
   padding-top: var(--space-1);
+  position: absolute;
+  z-index: 1;
+  transform: rotate(-13deg) translate(-55px,-59px);
 }
 
 .letter__photo {
@@ -54,8 +65,8 @@ defineProps<{
   background: var(--c-cream-100);
   padding: var(--space-1) var(--space-1) var(--space-3);
   box-shadow: var(--shadow-lift);
-  width: 34%;
-  max-width: 6rem;
+  width: 44%;
+  max-width: 8.5rem;
 }
 
 .letter__photo img {
@@ -71,6 +82,17 @@ defineProps<{
 .letter__photo--two {
   transform: rotate(5deg);
   margin-top: var(--space-4);
+  margin-left: calc(-1 * var(--space-3));
+}
+
+.letter__photo--three {
+  position: absolute;
+  top: 50%;
+  right: calc(-1 * var(--space-4));
+  width: 40%;
+  max-width: 7rem;
+  transform: translateY(-50%) rotate(7deg);
+  z-index: 1;
 }
 
 .letter__text {

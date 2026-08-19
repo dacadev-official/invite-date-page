@@ -98,18 +98,25 @@ export function shouldFlee(pointer: Point, rect: Rect, radius: number): boolean 
   return distance <= radius
 }
 
+export interface DecayRates {
+  scale: number
+  opacity: number
+}
+
+/** Tasas por defecto (desktop): la broma dura ~80 intentos antes de rendirse. */
+export const DESKTOP_DECAY_RATES: DecayRates = { scale: 0.985, opacity: 0.992 }
+
 /**
  * Encogimiento y desvanecimiento progresivo del botón según nº de intentos.
  * Monotónico y sin piso real: con suficientes intentos se acerca a 0 (el
  * botón debe poder volverse "lo bastante chico como para no verse"). El
  * piso mínimo es solo para evitar escala/opacidad negativas o NaN.
  */
-export function decayStyle(attempts: number): { scale: number; opacity: number } {
-  // Tasas MUY suaves a propósito: la broma necesita durar. Con 0.985/0.992
-  // el botón sigue casi entero tras 20 intentos (scale ≈ 0.74), a la mitad
-  // hacia los ~50, y solo se vuelve imperceptible con una persistencia
-  // heroica (~200+).
-  const scale = Math.max(0.04, Math.pow(0.985, attempts))
-  const opacity = Math.max(0.03, Math.pow(0.992, attempts))
+export function decayStyle(
+  attempts: number,
+  rates: DecayRates = DESKTOP_DECAY_RATES,
+): { scale: number; opacity: number } {
+  const scale = Math.max(0.04, Math.pow(rates.scale, attempts))
+  const opacity = Math.max(0.03, Math.pow(rates.opacity, attempts))
   return { scale, opacity }
 }
