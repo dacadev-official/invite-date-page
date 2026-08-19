@@ -1,0 +1,107 @@
+/**
+ * Design tokens — extraídos de resources/main-page-reference.png
+ * (save-the-date oxblood + sobre crema). Única fuente de valores de diseño:
+ * ningún componente debe usar un hex/px "mágico" fuera de este archivo.
+ */
+:root {
+  /* Color — paleta */
+  --c-oxblood-900: #2e070b;
+  --c-oxblood-700: #4b0e14;
+  --c-crimson-500: #7a0d19;
+  --c-crimson-400: #9a1522;
+  --c-cream-100: #f5efe6;
+  --c-cream-200: #efe9dc;
+  --c-cream-300: #ded5c4;
+  --c-sage-400: #9fae72;
+
+  /* Color — roles semánticos */
+  --color-bg: var(--c-oxblood-700);
+  --color-bg-vignette: var(--c-oxblood-900);
+  /* Líneas del patrón de olas del fondo: mismo rojo oxblood, apenas más
+     claro/oscuro que --color-bg, para que se lea como textura y no como
+     un elemento encima del contenido. */
+  --color-bg-wave-light: color-mix(in srgb, var(--c-crimson-500) 55%, var(--color-bg));
+  --color-bg-wave-dark: color-mix(in srgb, var(--c-oxblood-900) 45%, var(--color-bg));
+  --color-surface: var(--c-cream-200);
+  --color-surface-edge: var(--c-cream-300);
+  --color-accent: var(--c-crimson-500);
+  --color-accent-strong: var(--c-crimson-400);
+  --color-foliage: var(--c-sage-400);
+  --color-text-on-dark: var(--c-cream-100);
+  --color-text-on-light: var(--c-oxblood-900);
+  --color-text-muted-on-dark: color-mix(in srgb, var(--c-cream-100) 70%, transparent);
+  --color-focus-ring: var(--c-cream-100);
+
+  /* Tipografía — familias (roles: display script / body serif / utility caps) */
+  --font-display: 'Pinyon Script', 'Brush Script MT', cursive;
+  --font-body: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+  --font-utility: 'Marcellus', 'Times New Roman', serif;
+
+  /* Tipografía — escala fluida */
+  --fs-eyebrow: clamp(0.78rem, 0.7rem + 0.4vw, 0.92rem);
+  --fs-caption: clamp(0.9rem, 0.84rem + 0.3vw, 1.02rem);
+  --fs-body: clamp(1.15rem, 1.08rem + 0.35vw, 1.32rem);
+  --fs-subtitle: clamp(1.2rem, 1.08rem + 0.6vw, 1.55rem);
+  --fs-heading: clamp(1.85rem, 1.5rem + 1.75vw, 2.55rem);
+  --fs-display: clamp(3rem, 2.1rem + 5.5vw, 5.2rem);
+
+  --ls-eyebrow: 0.18em;
+  --ls-utility: 0.12em;
+  --lh-body: 1.5;
+  --lh-tight: 1.1;
+
+  /* Spacing — escala 4px */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* Layout */
+  --content-max-width: 30rem;
+  --content-max-width-desktop: 38rem;
+  --envelope-aspect: 3 / 2;
+  --bg-wave-tile: 3.5rem;
+
+  /* Bordes y radios */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-pill: 999px;
+  --border-hairline: 1px solid color-mix(in srgb, var(--c-cream-100) 25%, transparent);
+
+  /* Sombra */
+  --shadow-card: 0 1.5rem 3rem -1rem color-mix(in srgb, var(--c-oxblood-900) 70%, transparent);
+  --shadow-lift: 0 0.5rem 1.25rem -0.5rem color-mix(in srgb, var(--c-oxblood-900) 60%, transparent);
+
+  /* Movimiento */
+  --duration-fast: 180ms;
+  --duration-base: 320ms;
+  --duration-envelope: 900ms;
+  --duration-letter: 600ms;
+  --ease-envelope: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Z-index — capas del sobre durante la apertura. La carta se intercala
+     entre la solapa abierta y el bolsillo frontal para que salga físicamente
+     por la boca del sobre (nadie de estos elementos crea stacking context
+     propio hasta que el shell empieza a desvanecerse). */
+  --z-envelope-back: 1;
+  --z-flap-open: 2;
+  --z-letter: 3;
+  --z-envelope-pocket: 4;
+  --z-flap-closed: 5;
+  --z-letter-front: 6;
+  --z-modal: 20;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 1ms;
+    --duration-base: 1ms;
+    --duration-envelope: 1ms;
+    --duration-letter: 1ms;
+  }
+}
