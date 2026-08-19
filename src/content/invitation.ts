@@ -19,8 +19,9 @@ export const invitation: InvitationContent = {
     greeting: 'Hola Amor mio,',
     body: [
       'Esta es una invitación para que compartamos',
-      'una foto y noche especial',
-      'PD: Tranquila, incluye cena 😬',
+      'un momento especial juntos, una cita que hace tiempo no tenemos',
+      'y con fotos lindas.',
+      'PD: Tranquila, incluye comida 😬',
     ],
     signature: 'Con cariño David',
   },
@@ -28,15 +29,15 @@ export const invitation: InvitationContent = {
   photos: [
     {
       src: capriPhoto,
-      alt: 'Foto de nosotros dos, número uno',
+      alt: 'Foto de nosotros en Capri',
     },
     {
       src: cairoPhoto,
-      alt: 'Foto de nosotros dos, número dos',
+      alt: 'Foto de nosotros en Cairo',
     },
     {
       src: amorPhoto,
-      alt: 'Foto de nosotros dos, número tres',
+      alt: 'Foto mi amor',
     },
   ],
 
